@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Me - Anish Ali</title>
+  <style>
+    /* --- 1. THEME CONFIGURATION --- */
+    :root {
+      --bg: #050505;
+      --text-main: #e5e5e5;
+      --text-muted: #737373;
+      --border: #262626;
+      --btn-bg: transparent;
+      --btn-hover: #171717;
+      --accent: #ffffff;
+      --scroll-track: rgba(255, 255, 255, 0.05);
+      --scroll-thumb-bg: #000000;
+      --scroll-thumb-border: #333333;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Light Theme Overrides */
+    html.light {
+      --bg: #ffffff;
+      --text-main: #171717;
+      --text-muted: #666666;
+      --border: #e5e5e5;
+      --btn-bg: #ffffff;
+      --btn-hover: #f5f5f5;
+      --accent: #000000;
+      --scroll-track: rgba(0, 0, 0, 0.05);
+      --scroll-thumb-bg: #ffffff;
+      --scroll-thumb-border: #e5e5e5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Hide standard scrollbar cross-browser */
+    html,
+    body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* --- 2. LAYOUT & INTERACTIVE SCROLLBAR --- */
+    .container {
+      max-width: 65ch;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Sidebar Area */
+    #custom-scrollbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 100vh;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    #scroll-track {
+      width: 1px;
+      height: 100%;
+      background: var(--scroll-track);
+      position: relative;
+      pointer-events: auto;
+    }
+
+    #scroll-thumb {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      background: var(--bg);
+      border: 1px solid var(--scroll-thumb-border);
+      color: var(--text-muted);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: grab;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.2s, color 0.2s, background-color 0.3s;
+      pointer-events: auto;
+      user-select: none;
+    }
+
+    #scroll-thumb:hover {
+      border-color: var(--text-main);
+      color: var(--text-main);
+    }
+
+    #scroll-thumb:active {
+      cursor: grabbing;
+      border-color: var(--text-main);
+    }
+
+    /* --- 3. TYPOGRAPHY & LINKS --- */
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* --- 4. NAVBAR --- */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .logo {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-right: auto;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      padding: 4px;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-main);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* --- 5. CONTACT INFO --- */
+    .contact-section {
+      margin-top: 3rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      min-width: 120px;
+    }
+
+    .contact-value {
+      color: var(--text-main);
+      font-size: 1rem;
+    }
+
+    .contact-link {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .contact-link:hover {
+      opacity: 0.6;
+    }
+
+    .copy-btn {
+      margin-left: auto;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--text-main);
+      color: var(--text-main);
+    }
+
+    .copy-btn.copied {
+      color: #10b981;
+      border-color: #10b981;
+    }
+
+    /* --- 6. CANVAS --- */
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="canvas"></canvas>
+
+  <!-- DRAGGABLE SCROLLBAR -->
+  <div id="custom-scrollbar">
+    <div id="scroll-track">
+      <div id="scroll-thumb">aa</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav>
+      <a href="index.html" class="logo">aa</a>
+
+      <a href="https://medium.com/@anish_ali" class="nav-link" target="_blank">Blog</a>
+      <a href="work.html" class="nav-link">Work</a>
+      <a href="contact.html" class="nav-link">Me</a>
+
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </nav>
+
+    <main>
+      <!-- About Section -->
+      <section style="margin-bottom: 5rem;">
+        <h1>About</h1>
+        <p>Hey, I'm Anish Ali — a software engineer passionate about building elegant solutions and exploring new technologies.</p>
+
+        <div class="contact-section">
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="contact-label">Pronouns</span>
+            <span class="contact-value">he/him</span>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9" />
+            </svg>
+            <span class="contact-label">Work</span>
+            <span class="contact-value">Fillinx Solutions</span>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="contact-label">Timezone</span>
+            <span class="contact-value">(GMT+05:00) Islamabad</span>
+          </div>
+        </div>
+
+        <h2 style="font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem; font-weight: 600;">Story</h2>
+        <p>Self-taught developer who started coding at the age of 18 during my early college days. Fell in love with problem-solving and building things from scratch. Currently working at Fillinx Solutions, creating products that make a difference.</p>
+
+        <h2 style="font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: 600;">Interests</h2>
+        <p>Open source contributions, minimal design, developer tools, and constantly learning new frameworks. When I'm not coding, you'll find me exploring Vim configurations or writing technical articles.</p>
+      </section>
+
+      <!-- Contact Section -->
+      <section>
+        <h1>Me</h1>
+        <p>Feel free to reach out through any of these channels.</p>
+
+        <div class="contact-section">
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="contact-label">Email</span>
+            <a href="mailto:anishali1221@gmail.com" class="contact-link">anishali1221@gmail.com</a>
+            <button class="copy-btn" onclick="copyToClipboard('anishali1221@gmail.com', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3z"/>
+            </svg>
+            <span class="contact-label">Instagram</span>
+            <a href="https://www.instagram.com/dev.ashoo/" target="_blank" class="contact-link">dev.ashoo</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://www.instagram.com/dev.ashoo/', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span class="contact-label">X (Twitter)</span>
+            <a href="https://x.com/anishali_" target="_blank" class="contact-link">@anishali_</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://x.com/anishali_', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span class="contact-label">YouTube</span>
+            <a href="https://www.youtube.com/@anishali6018" target="_blank" class="contact-link">@anishali6018</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://www.youtube.com/@anishali6018', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span class="contact-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/anish-ali/" target="_blank" class="contact-link">anish-ali</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://www.linkedin.com/in/anish-ali/', this)">Copy</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer style="margin-top: 6rem; color: var(--text-muted); font-size: 0.85rem;">
+      © 2025 Anish Ali
+    </footer>
+  </div>
+
+  <script>
+    /* --- 1. DRAGGABLE SCROLLBAR LOGIC --- */
+    const thumb = document.getElementById('scroll-thumb');
+    let isDragging = false;
+    let startY, startTop;
+
+    function updateScrollThumb() {
+      if (isDragging) return;
+
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      const winHeight = window.innerHeight;
+
+      if (docHeight <= winHeight) {
+        thumb.style.display = 'none';
+        return;
+      }
+      thumb.style.display = 'flex';
+
+      const scrollPercent = scrollTop / (docHeight - winHeight);
+      const maxTop = winHeight - 40;
+      const topPos = Math.min(Math.max(scrollPercent * maxTop, 0), maxTop);
+
+      thumb.style.top = `${topPos}px`;
+    }
+
+    thumb.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startY = e.clientY;
+      startTop = parseInt(thumb.style.top || 0);
+      document.body.style.userSelect = 'none';
+      thumb.style.borderColor = 'var(--text-main)';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const deltaY = e.clientY - startY;
+      const winHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const maxTop = winHeight - 40;
+      let newTop = startTop + deltaY;
+      newTop = Math.max(0, Math.min(newTop, maxTop));
+      thumb.style.top = `${newTop}px`;
+      const scrollPercent = newTop / maxTop;
+      const scrollPos = scrollPercent * (docHeight - winHeight);
+      window.scrollTo(0, scrollPos);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      document.body.style.userSelect = '';
+      thumb.style.borderColor = '';
+    });
+
+    window.addEventListener('scroll', updateScrollThumb);
+    window.addEventListener('resize', updateScrollThumb);
+    updateScrollThumb();
+
+
+    /* --- 2. THEME TOGGLE & ANIMATION MANAGEMENT --- */
+    let animationFrameId = null;
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      if (isDark) {
+        html.classList.remove('dark');
+        html.classList.add('light');
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+      }
+
+      start();
+    }
+
+
+    /* --- 3. PLUM ANIMATION (Infinite Loop) --- */
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const steps = [];
+    const config = {len: 3};
+    const random = () => Math.random();
+
+    function spawnBranch() {
+      if (steps.length > 10) return;
+      const side = Math.floor(random() * 4);
+      let x, y, rad;
+      switch (side) {
+        case 0: x = 0; y = random() * height; rad = random() * -1 + 0.5; break;
+        case 1: x = width; y = random() * height; rad = random() * 1 + 2.5; break;
+        case 2: x = random() * width; y = 0; rad = random() * 1 + 1; break;
+        case 3: x = random() * width; y = height; rad = random() * -1 - 1; break;
+      }
+      steps.push({x, y, rad, life: 0});
+    }
+
+    function loop() {
+      animationFrameId = requestAnimationFrame(loop);
+
+      const isDark = document.documentElement.classList.contains('dark');
+      const bg = isDark ? 'rgba(5, 5, 5, 0.05)' : 'rgba(255, 255, 255, 0.05)';
+      const stroke = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
+
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, width, height);
+
+      if (random() < 0.05) spawnBranch();
+
+      for (let i = 0; i < steps.length; i++) {
+        const s = steps[i];
+        const nx = s.x + config.len * Math.cos(s.rad);
+        const ny = s.y + config.len * Math.sin(s.rad);
+
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(nx, ny);
+        ctx.strokeStyle = stroke;
+        ctx.stroke();
+
+        s.x = nx; s.y = ny; s.life++;
+        s.rad += (random() - 0.5) * 0.2;
+
+        if (nx < -50 || nx > width + 50 || ny < -50 || ny > height + 50 || s.life > 200 || random() < 0.02) {
+          steps.splice(i, 1);
+          i--;
+          continue;
+        }
+
+        if (random() < 0.03) {
+          steps.push({x: nx, y: ny, rad: s.rad + (random() - 0.5), life: s.life});
+        }
+      }
+    }
+
+    function start() {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+
+      steps.length = 0;
+      ctx.clearRect(0, 0, width, height);
+      loop();
+    }
+
+    start();
+
+
+    /* --- 4. COPY TO CLIPBOARD FUNCTION --- */
+    function copyToClipboard(text, button) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+
+  </script>
+</body>
+
+</html>
