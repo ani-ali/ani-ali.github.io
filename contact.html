@@ -286,6 +286,90 @@
       z-index: 0;
       pointer-events: none;
     }
+
+    /* --- 7. RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 3rem 1.5rem;
+      }
+
+      nav {
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .nav-link {
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.25rem !important;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .contact-item {
+        flex-wrap: wrap;
+        padding: 0.75rem 0;
+      }
+
+      .contact-label {
+        min-width: 100px;
+        font-size: 0.85rem;
+      }
+
+      .contact-value,
+      .contact-link {
+        font-size: 0.9rem;
+        flex: 1;
+      }
+
+      .copy-btn {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 0.5rem;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      nav {
+        gap: 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .contact-label {
+        min-width: 80px;
+        font-size: 0.8rem;
+      }
+
+      .contact-value,
+      .contact-link {
+        font-size: 0.85rem;
+      }
+
+      .contact-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
   </style>
 </head>
 

@@ -285,6 +285,86 @@
       z-index: 0;
       pointer-events: none;
     }
+
+    /* --- 7. RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 3rem 1.5rem;
+      }
+
+      nav {
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .nav-link {
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .category-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .project-icon,
+      .project-icon-fill {
+        width: 40px;
+        height: 40px;
+      }
+
+      .project-icon-fill.large-logo {
+        width: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      nav {
+        gap: 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .category-title {
+        font-size: 1.75rem;
+      }
+
+      .project-icon,
+      .project-icon-fill {
+        width: 36px;
+        height: 36px;
+      }
+
+      .project-icon-fill.large-logo {
+        width: 90px;
+      }
+
+      .project-title {
+        font-size: 1rem;
+      }
+
+      .project-description {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 
