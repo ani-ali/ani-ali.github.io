@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extras - Anish Ali</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Meta Tags -->
+  <meta name="description" content="Beyond the code - gaming, interests, and everything else about Anish Ali.">
+  <meta name="author" content="Anish Ali">
+  <meta name="keywords" content="gaming, youtube, interests, hobbies, achievements">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ani-ali.github.io/extras.html">
+  <meta property="og:title" content="Extras - Anish Ali">
+  <meta property="og:description" content="Beyond the code - gaming, interests, and everything else about Anish Ali.">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ani-ali.github.io/extras.html">
+  <meta property="twitter:title" content="Extras - Anish Ali">
+  <meta property="twitter:description" content="Beyond the code - gaming, interests, and everything else about Anish Ali.">
+  <meta name="twitter:creator" content="@anishali_">
+  <script>
+    // Load theme immediately to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(savedTheme);
+    })();
+  </script>
+  <style>
+    /* --- 1. THEME CONFIGURATION --- */
+    :root {
+      --bg: #050505;
+      --text-main: #e5e5e5;
+      --text-muted: #737373;
+      --border: #262626;
+      --btn-bg: transparent;
+      --btn-hover: #171717;
+      --accent: #ffffff;
+      --scroll-track: rgba(255, 255, 255, 0.05);
+      --scroll-thumb-bg: #000000;
+      --scroll-thumb-border: #333333;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Light Theme Overrides */
+    html.light {
+      --bg: #ffffff;
+      --text-main: #171717;
+      --text-muted: #666666;
+      --border: #e5e5e5;
+      --btn-bg: #ffffff;
+      --btn-hover: #f5f5f5;
+      --accent: #000000;
+      --scroll-track: rgba(0, 0, 0, 0.05);
+      --scroll-thumb-bg: #ffffff;
+      --scroll-thumb-border: #e5e5e5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Hide standard scrollbar cross-browser */
+    html,
+    body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* --- 2. LAYOUT & INTERACTIVE SCROLLBAR --- */
+    .container {
+      max-width: 65ch;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Sidebar Area */
+    #custom-scrollbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 100vh;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    #scroll-track {
+      width: 1px;
+      height: 100%;
+      background: var(--scroll-track);
+      position: relative;
+      pointer-events: auto;
+    }
+
+    #scroll-thumb {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      background: var(--bg);
+      border: 1px solid var(--scroll-thumb-border);
+      color: var(--text-muted);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: grab;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.2s, color 0.2s, background-color 0.3s;
+      pointer-events: auto;
+      user-select: none;
+    }
+
+    #scroll-thumb:hover {
+      border-color: var(--text-main);
+      color: var(--text-main);
+    }
+
+    #scroll-thumb:active {
+      cursor: grabbing;
+      border-color: var(--text-main);
+    }
+
+    /* --- 3. TYPOGRAPHY & LINKS --- */
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    a {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    a:hover {
+      opacity: 0.6;
+    }
+
+    /* --- 4. NAVBAR --- */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .logo {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-right: auto;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      padding: 4px;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-main);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* --- 5. SECTIONS --- */
+    .section {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-content {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .item {
+      margin-bottom: 2rem;
+    }
+
+    .item-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .item-description {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .link-button {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .link-button:hover {
+      background-color: var(--btn-hover);
+      opacity: 1;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    ul li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--text-main);
+    }
+
+    /* --- 6. CANVAS --- */
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* --- 7. RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 3rem 1.5rem;
+      }
+
+      nav {
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .nav-link {
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      nav {
+        gap: 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .section-title {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="canvas"></canvas>
+
+  <!-- DRAGGABLE SCROLLBAR -->
+  <div id="custom-scrollbar">
+    <div id="scroll-track">
+      <div id="scroll-thumb">aa</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav>
+      <a href="index.html" class="logo">aa</a>
+
+      <a href="https://medium.com/@anish_ali" class="nav-link" target="_blank">
+        Blog
+        <svg style="width: 12px; height: 12px; margin-left: 2px; opacity: 0.6;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+      <a href="work.html" class="nav-link">Work</a>
+      <a href="extras.html" class="nav-link">Extras</a>
+      <a href="contact.html" class="nav-link">Me</a>
+
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </nav>
+
+    <main>
+      <h1>Extras</h1>
+      <p>Beyond the code - things that make me, me.</p>
+
+      <!-- GAMING & YOUTUBE -->
+      <!-- <div class="section">
+        <h2 class="section-title">Gaming & Content</h2>
+        <div class="item">
+          <h3 class="item-title">YouTube Channel</h3>
+          <p class="item-description">Gaming content creator for 1.5 years. Self-produced videos including editing, thumbnails, recording, and voiceovers.</p>
+          <a href="https://www.youtube.com/@anishali6018" class="link-button" target="_blank">Visit Channel →</a>
+        </div>
+      </div> -->
+
+      <!-- ACHIEVEMENTS -->
+      <div class="section">
+        <h2 class="section-title">Achievements</h2>
+        <div class="item">
+          <h3 class="item-title">Agile Project Management</h3>
+          <p class="item-description">Certified in Agile Project Management from Coursera.</p>
+          <a href="https://www.coursera.org/account/accomplishments/verify/9EQVQMGM99VY" class="link-button" target="_blank">View Certificate →</a>
+        </div>
+      </div>
+
+      <!-- BOOKS -->
+      <div class="section">
+        <h2 class="section-title">Books I've Read</h2>
+        <div class="section-content">
+          <ul>
+            <li>The Psychology of Money</li>
+            <li>The Subtle Art of Not Giving a F*ck</li>
+            <li>Tor and the Dark Net</li>
+            <li>Hyper Focus</li>
+            <li>Atomic Habits</li>
+            <li>Eat That Frog</li>
+            <li>Rich Dad Poor Dad</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- INTERESTS -->
+      <div class="section">
+        <h2 class="section-title">Interests</h2>
+        <div class="section-content">
+          <ul>
+            <li>Gaming</li>
+            <li>Open Source</li>
+            <li>Tech Exploration</li>
+            <li>Add more...</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- OTHER STUFF -->
+      <div class="section">
+        <h2 class="section-title">Random Stuff</h2>
+        <div class="section-content">
+          <p>This is where you can add anything else - fun facts, hobbies, favorite things, or whatever you want to share.</p>
+        </div>
+      </div>
+
+    </main>
+
+    <footer style="margin-top: 6rem; color: var(--text-muted); font-size: 0.85rem;">
+      © 2025 Anish Ali
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="animation.js"></script>
+</body>
+
+</html>

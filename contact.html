@@ -26,6 +26,14 @@
   <meta property="twitter:title" content="Me - Anish Ali">
   <meta property="twitter:description" content="Get in touch with Anish Ali - self-taught developer, open source contributor, and software engineer at Fillinx Solutions.">
   <meta name="twitter:creator" content="@anishali_">
+  <script>
+    // Load theme immediately to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(savedTheme);
+    })();
+  </script>
   <style>
     /* --- 1. THEME CONFIGURATION --- */
     :root {
@@ -284,7 +292,6 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      pointer-events: none;
     }
 
     /* --- 7. RESPONSIVE --- */
@@ -388,8 +395,16 @@
     <nav>
       <a href="index.html" class="logo">aa</a>
 
-      <a href="https://medium.com/@anish_ali" class="nav-link" target="_blank">Blog</a>
+      <a href="https://medium.com/@anish_ali" class="nav-link" target="_blank">
+        Blog
+        <svg style="width: 12px; height: 12px; margin-left: 2px; opacity: 0.6;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
       <a href="work.html" class="nav-link">Work</a>
+      <a href="extras.html" class="nav-link">Extras</a>
       <a href="contact.html" class="nav-link">Me</a>
 
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
@@ -510,167 +525,10 @@
     </footer>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="animation.js"></script>
   <script>
-    /* --- 1. DRAGGABLE SCROLLBAR LOGIC --- */
-    const thumb = document.getElementById('scroll-thumb');
-    let isDragging = false;
-    let startY, startTop;
-
-    function updateScrollThumb() {
-      if (isDragging) return;
-
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight;
-      const winHeight = window.innerHeight;
-
-      if (docHeight <= winHeight) {
-        thumb.style.display = 'none';
-        return;
-      }
-      thumb.style.display = 'flex';
-
-      const scrollPercent = scrollTop / (docHeight - winHeight);
-      const maxTop = winHeight - 40;
-      const topPos = Math.min(Math.max(scrollPercent * maxTop, 0), maxTop);
-
-      thumb.style.top = `${topPos}px`;
-    }
-
-    thumb.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startY = e.clientY;
-      startTop = parseInt(thumb.style.top || 0);
-      document.body.style.userSelect = 'none';
-      thumb.style.borderColor = 'var(--text-main)';
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const deltaY = e.clientY - startY;
-      const winHeight = window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
-      const maxTop = winHeight - 40;
-      let newTop = startTop + deltaY;
-      newTop = Math.max(0, Math.min(newTop, maxTop));
-      thumb.style.top = `${newTop}px`;
-      const scrollPercent = newTop / maxTop;
-      const scrollPos = scrollPercent * (docHeight - winHeight);
-      window.scrollTo(0, scrollPos);
-    });
-
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-      document.body.style.userSelect = '';
-      thumb.style.borderColor = '';
-    });
-
-    window.addEventListener('scroll', updateScrollThumb);
-    window.addEventListener('resize', updateScrollThumb);
-    updateScrollThumb();
-
-
-    /* --- 2. THEME TOGGLE & ANIMATION MANAGEMENT --- */
-    let animationFrameId = null;
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.classList.contains('dark');
-      if (isDark) {
-        html.classList.remove('dark');
-        html.classList.add('light');
-      } else {
-        html.classList.remove('light');
-        html.classList.add('dark');
-      }
-
-      start();
-    }
-
-
-    /* --- 3. PLUM ANIMATION (Infinite Loop) --- */
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-
-    function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    const steps = [];
-    const config = {len: 3};
-    const random = () => Math.random();
-
-    function spawnBranch() {
-      if (steps.length > 10) return;
-      const side = Math.floor(random() * 4);
-      let x, y, rad;
-      switch (side) {
-        case 0: x = 0; y = random() * height; rad = random() * -1 + 0.5; break;
-        case 1: x = width; y = random() * height; rad = random() * 1 + 2.5; break;
-        case 2: x = random() * width; y = 0; rad = random() * 1 + 1; break;
-        case 3: x = random() * width; y = height; rad = random() * -1 - 1; break;
-      }
-      steps.push({x, y, rad, life: 0});
-    }
-
-    function loop() {
-      animationFrameId = requestAnimationFrame(loop);
-
-      const isDark = document.documentElement.classList.contains('dark');
-      const bg = isDark ? 'rgba(5, 5, 5, 0.05)' : 'rgba(255, 255, 255, 0.05)';
-      const stroke = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
-
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, width, height);
-
-      if (random() < 0.05) spawnBranch();
-
-      for (let i = 0; i < steps.length; i++) {
-        const s = steps[i];
-        const nx = s.x + config.len * Math.cos(s.rad);
-        const ny = s.y + config.len * Math.sin(s.rad);
-
-        ctx.beginPath();
-        ctx.moveTo(s.x, s.y);
-        ctx.lineTo(nx, ny);
-        ctx.strokeStyle = stroke;
-        ctx.stroke();
-
-        s.x = nx; s.y = ny; s.life++;
-        s.rad += (random() - 0.5) * 0.2;
-
-        if (nx < -50 || nx > width + 50 || ny < -50 || ny > height + 50 || s.life > 200 || random() < 0.02) {
-          steps.splice(i, 1);
-          i--;
-          continue;
-        }
-
-        if (random() < 0.03) {
-          steps.push({x: nx, y: ny, rad: s.rad + (random() - 0.5), life: s.life});
-        }
-      }
-    }
-
-    function start() {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-
-      steps.length = 0;
-      ctx.clearRect(0, 0, width, height);
-      loop();
-    }
-
-    start();
-
-
-    /* --- 4. COPY TO CLIPBOARD FUNCTION --- */
+    /* COPY TO CLIPBOARD FUNCTION */
     function copyToClipboard(text, button) {
       navigator.clipboard.writeText(text).then(() => {
         const originalText = button.textContent;
@@ -685,7 +543,6 @@
         console.error('Failed to copy:', err);
       });
     }
-
   </script>
 </body>
 
