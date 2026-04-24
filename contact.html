@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Me - Anish Ali</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Meta Tags -->
+  <meta name="description" content="Get in touch with Anish Ali - self-taught developer, open source contributor, and software engineer at Fillinx Solutions.">
+  <meta name="author" content="Anish Ali">
+  <meta name="keywords" content="contact, email, social media, anish ali, software engineer">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ani-ali.github.io/contact.html">
+  <meta property="og:title" content="Me - Anish Ali">
+  <meta property="og:description" content="Get in touch with Anish Ali - self-taught developer, open source contributor, and software engineer at Fillinx Solutions.">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ani-ali.github.io/contact.html">
+  <meta property="twitter:title" content="Me - Anish Ali">
+  <meta property="twitter:description" content="Get in touch with Anish Ali - self-taught developer, open source contributor, and software engineer at Fillinx Solutions.">
+  <meta name="twitter:creator" content="@anishali_">
+  <script>
+    // Load theme immediately to prevent flash
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(savedTheme);
+    })();
+  </script>
+  <style>
+    /* --- 1. THEME CONFIGURATION --- */
+    :root {
+      --bg: #050505;
+      --text-main: #e5e5e5;
+      --text-muted: #737373;
+      --border: #262626;
+      --btn-bg: transparent;
+      --btn-hover: #171717;
+      --accent: #ffffff;
+      --scroll-track: rgba(255, 255, 255, 0.05);
+      --scroll-thumb-bg: #000000;
+      --scroll-thumb-border: #333333;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Light Theme Overrides */
+    html.light {
+      --bg: #ffffff;
+      --text-main: #171717;
+      --text-muted: #666666;
+      --border: #e5e5e5;
+      --btn-bg: #ffffff;
+      --btn-hover: #f5f5f5;
+      --accent: #000000;
+      --scroll-track: rgba(0, 0, 0, 0.05);
+      --scroll-thumb-bg: #ffffff;
+      --scroll-thumb-border: #e5e5e5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Hide standard scrollbar cross-browser */
+    html,
+    body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.75;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* --- 2. LAYOUT & INTERACTIVE SCROLLBAR --- */
+    .container {
+      max-width: 65ch;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Sidebar Area */
+    #custom-scrollbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 100vh;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    #scroll-track {
+      width: 1px;
+      height: 100%;
+      background: var(--scroll-track);
+      position: relative;
+      pointer-events: auto;
+    }
+
+    #scroll-thumb {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      background: var(--bg);
+      border: 1px solid var(--scroll-thumb-border);
+      color: var(--text-muted);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: grab;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.2s, color 0.2s, background-color 0.3s;
+      pointer-events: auto;
+      user-select: none;
+    }
+
+    #scroll-thumb:hover {
+      border-color: var(--text-main);
+      color: var(--text-main);
+    }
+
+    #scroll-thumb:active {
+      cursor: grabbing;
+      border-color: var(--text-main);
+    }
+
+    /* --- 3. TYPOGRAPHY & LINKS --- */
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* --- 4. NAVBAR --- */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .logo {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-right: auto;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      padding: 4px;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-main);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* --- 5. CONTACT INFO --- */
+    .contact-section {
+      margin-top: 3rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      min-width: 120px;
+    }
+
+    .contact-value {
+      color: var(--text-main);
+      font-size: 1rem;
+    }
+
+    .contact-link {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .contact-link:hover {
+      opacity: 0.6;
+    }
+
+    .copy-btn {
+      margin-left: auto;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--text-main);
+      color: var(--text-main);
+    }
+
+    .copy-btn.copied {
+      color: #10b981;
+      border-color: #10b981;
+    }
+
+    /* --- 6. CANVAS --- */
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* --- 7. RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 3rem 1.5rem;
+      }
+
+      nav {
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .nav-link {
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.25rem !important;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .contact-item {
+        flex-wrap: wrap;
+        padding: 0.75rem 0;
+      }
+
+      .contact-label {
+        min-width: 100px;
+        font-size: 0.85rem;
+      }
+
+      .contact-value,
+      .contact-link {
+        font-size: 0.9rem;
+        flex: 1;
+      }
+
+      .copy-btn {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 0.5rem;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      nav {
+        gap: 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .contact-label {
+        min-width: 80px;
+        font-size: 0.8rem;
+      }
+
+      .contact-value,
+      .contact-link {
+        font-size: 0.85rem;
+      }
+
+      .contact-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="canvas"></canvas>
+
+  <!-- DRAGGABLE SCROLLBAR -->
+  <div id="custom-scrollbar">
+    <div id="scroll-track">
+      <div id="scroll-thumb">aa</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav>
+      <a href="index.html" class="logo">aa</a>
+
+      <a href="https://medium.com/@anish_ali" class="nav-link" target="_blank">
+        Blog
+        <svg style="width: 12px; height: 12px; margin-left: 2px; opacity: 0.6;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+      <a href="work.html" class="nav-link">Work</a>
+      <a href="extras.html" class="nav-link">Extras</a>
+      <a href="contact.html" class="nav-link">Me</a>
+
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </nav>
+
+    <main>
+      <!-- About Section -->
+      <section style="margin-bottom: 5rem;">
+        <h1>About</h1>
+        <p>Hey, I'm Anish Ali — a software engineer passionate about building elegant solutions and exploring new technologies.</p>
+
+        <div class="contact-section">
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="contact-label">Pronouns</span>
+            <span class="contact-value">he/him</span>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9" />
+            </svg>
+            <span class="contact-label">Work</span>
+            <span class="contact-value">Fillinx Solutions</span>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="contact-label">Timezone</span>
+            <span class="contact-value">(GMT+05:00) Islamabad</span>
+          </div>
+        </div>
+
+        <h2 style="font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1rem; font-weight: 600;">Story</h2>
+        <p>Self-taught developer who started coding at the age of 18 during my early college days. Fell in love with problem-solving and building things from scratch. Currently working at Fillinx Solutions, creating products that make a difference.</p>
+
+        <h2 style="font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: 600;">Interests</h2>
+        <p>Open source contributions, minimal design, developer tools, and constantly learning new frameworks. When I'm not coding, you'll find me exploring Vim configurations or writing technical articles.</p>
+      </section>
+
+      <!-- Contact Section -->
+      <section>
+        <h1>Me</h1>
+        <p>Feel free to reach out through any of these channels.</p>
+
+        <div class="contact-section">
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="contact-label">Email</span>
+            <a href="mailto:anishali.dev@gmail.com" class="contact-link">anishali.dev@gmail.com</a>
+            <button class="copy-btn" onclick="copyToClipboard('anishali.dev@gmail.com', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3z"/>
+            </svg>
+            <span class="contact-label">Instagram</span>
+            <a href="https://www.instagram.com/dev.ashoo/" target="_blank" class="contact-link">dev.ashoo</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://www.instagram.com/dev.ashoo/', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span class="contact-label">X (Twitter)</span>
+            <a href="https://x.com/anishali_" target="_blank" class="contact-link">@anishali_</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://x.com/anishali_', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span class="contact-label">YouTube</span>
+            <a href="https://www.youtube.com/@anishali6018" target="_blank" class="contact-link">@anishali6018</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://www.youtube.com/@anishali6018', this)">Copy</button>
+          </div>
+
+          <div class="contact-item">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span class="contact-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/anish-ali/" target="_blank" class="contact-link">anish-ali</a>
+            <button class="copy-btn" onclick="copyToClipboard('https://www.linkedin.com/in/anish-ali/', this)">Copy</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer style="margin-top: 6rem; color: var(--text-muted); font-size: 0.85rem;">
+      © 2025 Anish Ali
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="animation.js"></script>
+  <script>
+    /* COPY TO CLIPBOARD FUNCTION */
+    function copyToClipboard(text, button) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+  </script>
+</body>
+
+</html>
